@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class TestComponent {
   value = 'selva';
+  onClick(event: Event) {
+    console.log(`click event triggered.`);
+    // console.log(`event: ${(<HTMLInputElement>event.target).value}`);
+    console.log(`event: ${event.target}`);
+  }
 }
