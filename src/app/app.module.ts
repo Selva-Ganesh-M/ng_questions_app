@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { TestComponent } from './test/test.component';
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     TestComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
