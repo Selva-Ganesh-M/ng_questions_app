@@ -6,19 +6,19 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { QuestionComponent } from './question/question.component';
 import { HeaderComponent } from './header/header.component';
+import { TestComponent } from './test/test.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     QuestionComponent,
-    HeaderComponent
+    HeaderComponent,
+    TestComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
