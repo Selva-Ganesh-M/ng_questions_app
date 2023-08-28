@@ -9,6 +9,7 @@ import { QuestionService } from '../service/question.service';
 export class QuestionComponent implements OnInit {
   public name: string = '';
   public questionList: any[] = [];
+  currentQuestion: number = 0;
 
   constructor(private questionService: QuestionService) {
     console.log(`constructor`);
@@ -26,5 +27,17 @@ export class QuestionComponent implements OnInit {
 
       this.questionList = res.questions;
     });
+  }
+
+  nextQuestion() {
+    if (this.currentQuestion < this.questionList.length - 1) {
+      this.currentQuestion++;
+    }
+  }
+
+  prevQuestion() {
+    if (this.currentQuestion > 0) {
+      this.currentQuestion--;
+    }
   }
 }
