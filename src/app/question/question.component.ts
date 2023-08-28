@@ -8,12 +8,15 @@ import { interval } from 'rxjs';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit {
+  // #region : variables
   name: string = '';
   questionList: any[] = [];
   currentQuestion: number = 0;
   score = 0;
   clock_tick = 60;
   interval$: any;
+  progress: string = '0';
+  // #endregion : variables
 
   @ViewChild('answer') answerKey!: ElementRef;
   constructor(private questionService: QuestionService) {
@@ -35,10 +38,13 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  // #region : question controls
+
   nextQuestion() {
     if (this.currentQuestion < this.questionList.length - 1) {
       this.currentQuestion++;
       this.resetCounter();
+      this.updateProgress();
     }
   }
 
@@ -46,6 +52,7 @@ export class QuestionComponent implements OnInit {
     if (this.currentQuestion > 0) {
       this.currentQuestion--;
       this.resetCounter();
+      this.updateProgress();
     }
   }
 
@@ -53,9 +60,33 @@ export class QuestionComponent implements OnInit {
     if (option.correct === true) {
       this.score += 10;
     }
-    if (currentQuestion < this.questionList.length - 1) this.currentQuestion++;
+    if (currentQuestion < this.questionList.length - 1) {
+      this.currentQuestion++;
+    } else {
+      this.stopCounter();
+      return;
+    }
     this.resetCounter();
+    this.updateProgress();
   }
+
+  resetQuiz() {
+    this.score = 0;
+    this.currentQuestion = 0;
+    this.resetCounter();
+    this.updateProgress();
+  }
+
+  updateProgress() {
+    this.progress = (
+      (this.currentQuestion / this.questionList.length) *
+      100
+    ).toString();
+  }
+
+  // #endregion : question controls
+
+  // #region : counter function
 
   startCounter() {
     this.interval$ = interval(1000).subscribe((val) => {
@@ -74,7 +105,6 @@ export class QuestionComponent implements OnInit {
 
   stopCounter() {
     this.interval$.unsubscribe();
-    this.clock_tick = 0;
   }
 
   resetCounter() {
@@ -82,4 +112,5 @@ export class QuestionComponent implements OnInit {
     this.clock_tick = 60;
     this.startCounter();
   }
+  // #endregion : counter function
 }

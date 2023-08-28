@@ -31,17 +31,11 @@
     </div>
 
     <!-- progress bar -->
-    <div
-      class="progress mb-3"
-      role="progressbar"
-      aria-label="Success striped example"
-      aria-valuenow="25"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
+    <div class="progress mb-3" role="progressbar">
       <div
         class="progress-bar progress-bar-striped bg-success"
         style="width: 25%"
+        [ngStyle]="{'width':progress.toString()+'%'}"
       ></div>
     </div>
 
@@ -75,7 +69,7 @@
         <i class="fa fa-chevron-left text-primary fa-3x" aria-hidden="true"></i>
       </button>
 
-      <button class="btn">
+      <button (click)="resetQuiz()" class="btn">
         <i class="fa fa-refresh text-primary fa-3x" aria-hidden="true"></i>
       </button>
 
