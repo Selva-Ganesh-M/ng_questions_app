@@ -26,7 +26,7 @@
         >
       </div>
       <div id="timer">
-        <h5>60 sec ⏱</h5>
+        <h5>{{ clock_tick }} sec ⏱</h5>
       </div>
     </div>
 
@@ -55,7 +55,11 @@
     <!-- answers -->
     <div class="options">
       <ol>
-        <li *ngFor="let option of questionList[currentQuestion]?.options">
+        <li
+          *ngFor="let option of questionList[currentQuestion]?.options"
+          (click)="chooseAnswer(currentQuestion, option)"
+          #answer
+        >
           <div class="card">{{ option.text }}</div>
         </li>
       </ol>
