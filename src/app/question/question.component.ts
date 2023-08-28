@@ -10,6 +10,8 @@ export class QuestionComponent implements OnInit {
   public name: string = '';
   public questionList: any[] = [];
   currentQuestion: number = 0;
+  score = 0;
+  clock_tick = 60;
 
   constructor(private questionService: QuestionService) {
     console.log(`constructor`);
